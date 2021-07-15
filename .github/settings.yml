@@ -38,7 +38,7 @@ repository:
   archived: false
   default_branch: "main"
   delete_branch_on_merge: true
-  description: "A template repository for PHP projects or libraries"
+  description: "A listless ConvertKit implementation in PHP"
   enable_automated_security_fixes: true
   enable_vulnerability_alerts: true
   has_downloads: true
@@ -46,6 +46,6 @@ repository:
   has_pages: false
   has_projects: false
   has_wiki: false
-  name: "php-template-project"
+  name: "listless-convert"
   private: false
-  topics: "php, template, goats"
+  topics: "php, convertkit, email, mailing-list, goats"

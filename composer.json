@@ -1,7 +1,7 @@
 {
-    "name": "gsteel/php-template-project",
+    "name": "gsteel/listless-convert",
     "type": "library",
-    "description": "Template Project Name",
+    "description": "Listless API Client for ConvertKit",
     "keywords": [],
     "homepage": "https://github.com/gsteel/php-template-project",
     "license": "MIT",
@@ -12,14 +12,32 @@
         }
     ],
     "require": {
-        "php": "^7.3 || ~8.0"
+        "php": "^7.4 || ~8.0",
+        "ext-json": "*",
+        "gsteel/listless": "dev-main",
+        "myclabs/php-enum": "^1.8",
+        "php-http/discovery": "^1.11",
+        "psr/container": "^1 || ^2",
+        "psr/http-client": "^1.0",
+        "psr/http-client-implementation": "*",
+        "psr/http-factory": "^1.0",
+        "psr/http-message": "^1.0",
+        "webmozart/assert": "^1.10"
+    },
+    "provide": {
+        "symfony/polyfill-php73": "*"
     },
     "require-dev": {
+        "ext-curl": "*",
         "doctrine/coding-standard": "^9.0",
         "ergebnis/composer-normalize": "^2.15",
-        "infection/infection": "^0.18.2",
+        "infection/infection": "^0",
+        "laminas/laminas-diactoros": "^2.6",
+        "php-http/curl-client": "^2.2",
         "phpunit/phpunit": "^9.5",
         "psalm/plugin-phpunit": "^0.16.1",
+        "react/child-process": "^0.6.3",
+        "react/http": "^1.4",
         "roave/security-advisories": "dev-latest",
         "vimeo/psalm": "^4.8"
     },
@@ -34,25 +52,32 @@
     },
     "autoload": {
         "psr-4": {
-            "Gsteel\\Package\\": "src/"
+            "GSteel\\Listless\\Convert\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Gsteel\\Package\\Test\\Unit\\": "test/Unit",
-            "Gsteel\\Package\\Test\\Integration\\": "test/Integration"
+            "GSteel\\Listless\\Convert\\Test\\Unit\\": "test/Unit",
+            "GSteel\\Listless\\Convert\\Test\\Integration\\": "test/Integration"
         }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/gsteel/listless"
+        }
+    ],
     "scripts": {
         "check": [
             "phpcs",
             "psalm",
-            "phpunit",
-            "infection"
+            "phpunit --coverage-xml=build/coverage/coverage-xml --log-junit=build/coverage/junit.xml --exclude-group=Smoke",
+            "infection --skip-initial-tests --coverage=build/coverage"
         ],
         "clean": [
             "composer normalize",
-            "psalm --generate-baseline",
+            "psalm --clear-cache",
+            "psalm --update-baseline",
             "phpcbf"
         ]
     }
