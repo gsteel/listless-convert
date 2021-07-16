@@ -6,11 +6,14 @@ namespace GSteel\Listless\Convert\Test\Unit\Value;
 
 use DateTimeImmutable;
 use DateTimeZone;
+use Generator;
 use GSteel\Listless\Convert\Exception\AssertionFailed;
 use GSteel\Listless\Convert\Value\Form;
 use GSteel\Listless\Convert\Value\FormId;
 use GSteel\Listless\Json;
 use PHPUnit\Framework\TestCase;
+
+use function array_keys;
 
 class FormTest extends TestCase
 {
@@ -47,7 +50,7 @@ class FormTest extends TestCase
         ];
     }
 
-    /** @return array<string, array{0: string, 1:mixed[]}> */
+    /** @return array<string, array{0: string, 1:mixed}> */
     public function invalidPayloadProvider(): array
     {
         return [
@@ -71,6 +74,23 @@ class FormTest extends TestCase
         $payload = $this->validPayload();
         /** @psalm-suppress MixedAssignment */
         $payload[$key] = $value;
+        $this->expectException(AssertionFailed::class);
+        Form::fromArray($payload);
+    }
+
+    /** @return Generator<string, array{0:string}> */
+    public function keyProvider(): Generator
+    {
+        foreach (array_keys($this->validPayload()) as $key) {
+            yield $key => [$key];
+        }
+    }
+
+    /** @dataProvider keyProvider */
+    public function testUnsetRequirementsCauseAssertionFailures(string $key): void
+    {
+        $payload = $this->validPayload();
+        unset($payload[$key]);
         $this->expectException(AssertionFailed::class);
         Form::fromArray($payload);
     }
