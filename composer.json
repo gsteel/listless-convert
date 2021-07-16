@@ -52,13 +52,13 @@
     },
     "autoload": {
         "psr-4": {
-            "GSteel\\Listless\\Convert\\": "src/"
+            "GSteel\\Listless\\ConvertKit\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "GSteel\\Listless\\Convert\\Test\\Unit\\": "test/Unit",
-            "GSteel\\Listless\\Convert\\Test\\Integration\\": "test/Integration"
+            "GSteel\\Listless\\ConvertKit\\Test\\Unit\\": "test/Unit",
+            "GSteel\\Listless\\ConvertKit\\Test\\Integration\\": "test/Integration"
         }
     },
     "repositories": [

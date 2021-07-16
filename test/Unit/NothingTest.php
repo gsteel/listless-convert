@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GSteel\Listless\Convert\Test\Unit;
+namespace GSteel\Listless\ConvertKit\Test\Unit;
 
 use PHPUnit\Framework\TestCase;
 

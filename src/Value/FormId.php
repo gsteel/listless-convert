@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GSteel\Listless\Convert\Value;
+namespace GSteel\Listless\ConvertKit\Value;
 
 use GSteel\Listless\ListId;
 

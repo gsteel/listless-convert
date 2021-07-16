@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace GSteel\Listless\Convert\Value;
+namespace GSteel\Listless\ConvertKit\Value;
 
 use DateTimeImmutable;
 use DateTimeInterface;
-use GSteel\Listless\Convert\Util\Assert;
+use GSteel\Listless\ConvertKit\Util\Assert;
 use GSteel\Listless\ListId;
 use GSteel\Listless\MailingList;
 

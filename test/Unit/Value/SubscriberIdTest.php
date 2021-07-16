@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GSteel\Listless\Convert\Test\Unit\Value;
+namespace GSteel\Listless\ConvertKit\Test\Unit\Value;
 
-use GSteel\Listless\Convert\Value\SubscriberId;
+use GSteel\Listless\ConvertKit\Value\SubscriberId;
 use PHPUnit\Framework\TestCase;
 
 class SubscriberIdTest extends TestCase
