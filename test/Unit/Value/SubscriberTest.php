@@ -8,50 +8,39 @@ use DateTimeImmutable;
 use DateTimeZone;
 use Generator;
 use GSteel\Listless\Convert\Exception\AssertionFailed;
-use GSteel\Listless\Convert\Value\Form;
-use GSteel\Listless\Convert\Value\FormId;
-use GSteel\Listless\Json;
+use GSteel\Listless\Convert\Value\Subscriber;
+use GSteel\Listless\Convert\Value\SubscriberId;
+use GSteel\Listless\Convert\Value\SubscriberState;
+use GSteel\Listless\Value\EmailAddress;
 use PHPUnit\Framework\TestCase;
 
 use function array_keys;
 
-class FormTest extends TestCase
+class SubscriberTest extends TestCase
 {
-    public function testThatAFormCanBeHydratedFromAJsonPayload(): void
-    {
-        $examplePayload = <<<JSON
-            {
-                "id":123,
-                "name":"Landing page",
-                "created_at":"2021-01-01T12:34:56.000Z",
-                "type":"hosted",
-                "embed_js":"https://some-domain.ck.page/some-uid/index.js",
-                "embed_url":"https://some-domain.ck.page/some-uid",
-                "archived":false,
-                "uid":"some-uid"
-            }
-            JSON;
-
-        $form = Form::fromArray(Json::decodeToArray($examplePayload));
-        self::assertTrue(FormId::fromInteger(123)->isEqualTo($form->listId()));
-        self::assertTrue($form->listId()->isEqualTo($form->id()));
-
-        $expect = DateTimeImmutable::createFromFormat(
-            'Y-m-d H:i:s',
-            '2021-01-01 12:34:56',
-            new DateTimeZone('UTC')
-        );
-        self::assertEquals($expect, $form->createdAt());
-    }
-
     /** @return array<string, mixed> */
     public function validPayload(): array
     {
         return [
             'id' => 1,
-            'name' => 'Foo',
+            'email_address' => 'me@example.com',
             'created_at' => '2021-01-01T12:34:56.000Z',
+            'state' => 'active',
         ];
+    }
+
+    public function testAccessorsReturnTheExpectedValues(): void
+    {
+        $subscriber = Subscriber::fromArray($this->validPayload());
+        self::assertTrue(SubscriberId::fromInteger(1)->isEqualTo($subscriber->id()));
+        self::assertTrue(EmailAddress::fromString('me@example.com')->isEqualTo($subscriber->email()));
+        self::assertTrue(SubscriberState::active()->equals($subscriber->state()));
+        $expect = DateTimeImmutable::createFromFormat(
+            'Y-m-d H:i:s',
+            '2021-01-01 12:34:56',
+            new DateTimeZone('UTC')
+        );
+        self::assertEquals($expect, $subscriber->createdAt());
     }
 
     /** @return array<string, array{0: string, 1:mixed}> */
@@ -60,11 +49,14 @@ class FormTest extends TestCase
         return [
             'Missing ID' => ['id', null],
             'String ID' => ['id', 'Foo'],
-            'Missing Name' => ['name', null],
-            'Integer Name' => ['name', 1],
+            'Missing Email' => ['email_address', null],
+            'Integer Email' => ['email_address', 1],
             'Missing Date' => ['created_at', null],
             'Invalid Date' => ['created_at', 'Nuts'],
             'Non string Date' => ['created_at', 9],
+            'Missing State' => ['state', null],
+            'Integer State' => ['state', 1],
+            'Invalid State' => ['state', 'foo'],
         ];
     }
 
@@ -79,7 +71,7 @@ class FormTest extends TestCase
         /** @psalm-suppress MixedAssignment */
         $payload[$key] = $value;
         $this->expectException(AssertionFailed::class);
-        Form::fromArray($payload);
+        Subscriber::fromArray($payload);
     }
 
     /** @return Generator<string, array{0:string}> */
@@ -96,6 +88,6 @@ class FormTest extends TestCase
         $payload = $this->validPayload();
         unset($payload[$key]);
         $this->expectException(AssertionFailed::class);
-        Form::fromArray($payload);
+        Subscriber::fromArray($payload);
     }
 }
