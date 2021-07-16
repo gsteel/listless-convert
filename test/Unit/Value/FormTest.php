@@ -37,66 +37,40 @@ class FormTest extends TestCase
         self::assertEquals($expect, $form->createdAt());
     }
 
-    /** @return array<string, array{0: mixed[]}> */
+    /** @return array<string, mixed> */
+    public function validPayload(): array
+    {
+        return [
+            'id' => 1,
+            'name' => 'Foo',
+            'created_at' => '2021-01-01T12:34:56.000Z',
+        ];
+    }
+
+    /** @return array<string, array{0: string, 1:mixed[]}> */
     public function invalidPayloadProvider(): array
     {
         return [
-            'Missing ID' => [
-                [
-                    'name' => 'Foo',
-                    'created_at' => '2021-01-01T12:34:56.000Z',
-                ],
-            ],
-            'String ID' => [
-                [
-                    'id' => 'Goats',
-                    'name' => 'Foo',
-                    'created_at' => '2021-01-01T12:34:56.000Z',
-                ],
-            ],
-            'Missing Name' => [
-                [
-                    'id' => 123,
-                    'created_at' => '2021-01-01T12:34:56.000Z',
-                ],
-            ],
-            'Integer Name' => [
-                [
-                    'id' => 123,
-                    'name' => 42,
-                    'created_at' => '2021-01-01T12:34:56.000Z',
-                ],
-            ],
-            'Missing Date' => [
-                [
-                    'id' => 123,
-                    'name' => 'Goats',
-                ],
-            ],
-            'Invalid Date' => [
-                [
-                    'id' => 123,
-                    'name' => 'Goats',
-                    'created_at' => 'Nuts',
-                ],
-            ],
-            'Non string Date' => [
-                [
-                    'id' => 123,
-                    'name' => 'Goats',
-                    'created_at' => 9,
-                ],
-            ],
+            'Missing ID' => ['id', null],
+            'String ID' => ['id', 'Foo'],
+            'Missing Name' => ['name', null],
+            'Integer Name' => ['name', 1],
+            'Missing Date' => ['created_at', null],
+            'Invalid Date' => ['created_at', 'Nuts'],
+            'Non string Date' => ['created_at', 9],
         ];
     }
 
     /**
-     * @param mixed[] $payload
+     * @param mixed $value
      *
      * @dataProvider invalidPayloadProvider
      */
-    public function testPayloadAssertions(array $payload): void
+    public function testPayloadAssertions(string $key, $value): void
     {
+        $payload = $this->validPayload();
+        /** @psalm-suppress MixedAssignment */
+        $payload[$key] = $value;
         $this->expectException(AssertionFailed::class);
         Form::fromArray($payload);
     }
