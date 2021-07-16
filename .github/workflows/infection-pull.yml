@@ -1,9 +1,7 @@
-name: "Mutation Tests"
+name: "Mutation Tests - Pull Request Annotations"
 
 on:
-  push:
-    branches:
-      - "main"
+  pull_request:
 
 jobs:
   mutation-tests:
@@ -29,8 +27,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: composer-latest-7.4-${{ hashFiles('composer.*') }}
-          restore-keys: composer-latest-7.4-${{ hashFiles('composer.*') }}
+          key: composer-latest-${{ hashFiles('composer.*') }}
+          restore-keys: composer-latest-${{ hashFiles('composer.*') }}
 
       - name: "Install latest dependencies"
         run: "composer update --no-interaction --no-progress"
@@ -39,8 +37,6 @@ jobs:
         run: "vendor/bin/phpunit --coverage-xml=build/coverage/coverage-xml --log-junit=build/coverage/junit.xml --exclude-group=Smoke"
 
       - name: "Run mutation tests"
-        run: "vendor/bin/infection --configuration=infection.json --skip-initial-tests --coverage=build/coverage"
-
-      - name: "Show Infection Log"
-        if: always()
-        run: "cat build/infection/infection-log.txt"
+        run: |
+          git fetch --depth=1 origin $GITHUB_BASE_REF
+          vendor/bin/infection --configuration=infection.json --skip-initial-tests --coverage=build/coverage --git-diff-filter=AM --git-diff-base=origin/$GITHUB_BASE_REF --logger-github
