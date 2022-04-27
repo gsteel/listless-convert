@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace GSteel\Listless\ConvertKit\Test\Unit\Value;
+namespace ListInterop\ConvertKit\Test\Unit\Value;
 
 use DateTimeImmutable;
 use DateTimeZone;
 use Generator;
-use GSteel\Listless\ConvertKit\Exception\AssertionFailed;
-use GSteel\Listless\ConvertKit\Value\Subscriber;
-use GSteel\Listless\ConvertKit\Value\SubscriberId;
-use GSteel\Listless\ConvertKit\Value\SubscriberState;
-use GSteel\Listless\Value\EmailAddress;
+use ListInterop\ConvertKit\Exception\AssertionFailed;
+use ListInterop\ConvertKit\Value\Subscriber;
+use ListInterop\ConvertKit\Value\SubscriberId;
+use ListInterop\ConvertKit\Value\SubscriberState;
+use ListInterop\Value\EmailAddress;
 use PHPUnit\Framework\TestCase;
 
 use function array_keys;

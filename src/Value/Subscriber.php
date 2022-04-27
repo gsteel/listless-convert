@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace GSteel\Listless\ConvertKit\Value;
+namespace ListInterop\ConvertKit\Value;
 
 use DateTimeImmutable;
 use DateTimeInterface;
-use GSteel\Listless\ConvertKit\Util\Assert;
-use GSteel\Listless\Value\EmailAddress;
+use ListInterop\ConvertKit\Util\Assert;
+use ListInterop\Value\EmailAddress;
 
 /**
  * @psalm-immutable

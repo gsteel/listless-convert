@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GSteel\Listless\ConvertKit\Util;
+namespace ListInterop\ConvertKit\Util;
 
-use GSteel\Listless\ConvertKit\Exception\AssertionFailed;
+use ListInterop\ConvertKit\Exception\AssertionFailed;
 
 final class Assert extends \Webmozart\Assert\Assert
 {

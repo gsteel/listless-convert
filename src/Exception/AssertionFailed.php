@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GSteel\Listless\ConvertKit\Exception;
+namespace ListInterop\ConvertKit\Exception;
 
 use InvalidArgumentException;
 

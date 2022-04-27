@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GSteel\Listless\ConvertKit\Value;
+namespace ListInterop\ConvertKit\Value;
 
-use GSteel\Listless\ListId;
+use ListInterop\ListId;
 
 /**
  * @psalm-immutable

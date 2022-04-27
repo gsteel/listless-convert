@@ -1,12 +1,12 @@
 # PHP Template Repository
 
-[![Build Status](https://github.com/gsteel/listless-convert/workflows/Continuous%20Integration/badge.svg)](https://github.com/gsteel/listless-convert/actions?query=workflow%3A"Continuous+Integration")
+[![Build Status](https://github.com/list-interop/listless-convert/workflows/Continuous%20Integration/badge.svg)](https://github.com/list-interop/listless-convert/actions?query=workflow%3A"Continuous+Integration")
 
-[![codecov](https://codecov.io/gh/gsteel/listless-convert/branch/main/graph/badge.svg)](https://codecov.io/gh/gsteel/listless-convert)
-[![Psalm Type Coverage](https://shepherd.dev/github/gsteel/listless-convert/coverage.svg)](https://shepherd.dev/github/gsteel/listless-convert)
+[![codecov](https://codecov.io/gh/list-interop/listless-convert/branch/main/graph/badge.svg)](https://codecov.io/gh/list-interop/listless-convert)
+[![Psalm Type Coverage](https://shepherd.dev/github/list-interop/listless-convert/coverage.svg)](https://shepherd.dev/github/list-interop/listless-convert)
 
-[![Latest Stable Version](https://poser.pugx.org/gsteel/listless-convert/v/stable)](https://packagist.org/packages/gsteel/listless-convert)
-[![Total Downloads](https://poser.pugx.org/gsteel/listless-convert/downloads)](https://packagist.org/packages/gsteel/listless-convert)
+[![Latest Stable Version](https://poser.pugx.org/list-interop/listless-convert/v/stable)](https://packagist.org/packages/list-interop/listless-convert)
+[![Total Downloads](https://poser.pugx.org/list-interop/listless-convert/downloads)](https://packagist.org/packages/list-interop/listless-convert)
 
 ## Introduction
 
