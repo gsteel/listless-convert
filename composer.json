@@ -1,9 +1,9 @@
 {
-    "name": "gsteel/listless-convert",
+    "name": "list-interop/listless-convert",
     "type": "library",
     "description": "Listless API Client for ConvertKit",
     "keywords": [],
-    "homepage": "https://github.com/gsteel/php-template-project",
+    "homepage": "https://github.com/list-interop/listless-convert",
     "license": "MIT",
     "authors": [
         {
@@ -12,9 +12,9 @@
         }
     ],
     "require": {
-        "php": "^7.4 || ~8.0",
+        "php": "^7.4 || ~8.0 || ~8.1",
         "ext-json": "*",
-        "gsteel/listless": "dev-main",
+        "list-interop/listless": "dev-main",
         "myclabs/php-enum": "^1.8",
         "php-http/discovery": "^1.11",
         "psr/container": "^1 || ^2",
@@ -31,18 +31,23 @@
         "ext-curl": "*",
         "doctrine/coding-standard": "^9.0",
         "ergebnis/composer-normalize": "^2.15",
-        "infection/infection": "^0",
+        "infection/infection": "^0.26",
         "laminas/laminas-diactoros": "^2.6",
         "php-http/curl-client": "^2.2",
         "phpunit/phpunit": "^9.5",
         "psalm/plugin-phpunit": "^0.16.1",
         "react/child-process": "^0.6.3",
-        "react/http": "^1.4",
+        "react/http": "^1.6",
         "roave/security-advisories": "dev-latest",
         "vimeo/psalm": "^4.8"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "infection/extension-installer": true,
+            "ergebnis/composer-normalize": true
+        }
     },
     "extra": {
         "composer-normalize": {
@@ -52,19 +57,19 @@
     },
     "autoload": {
         "psr-4": {
-            "GSteel\\Listless\\ConvertKit\\": "src/"
+            "ListInterop\\ConvertKit\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "GSteel\\Listless\\ConvertKit\\Test\\Unit\\": "test/Unit",
-            "GSteel\\Listless\\ConvertKit\\Test\\Integration\\": "test/Integration"
+            "ListInterop\\ConvertKit\\Test\\Unit\\": "test/Unit",
+            "ListInterop\\ConvertKit\\Test\\Integration\\": "test/Integration"
         }
     },
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/gsteel/listless"
+            "url": "https://github.com/list-interop/listless"
         }
     ],
     "scripts": {

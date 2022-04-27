@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GSteel\Listless\ConvertKit\Exception;
+namespace ListInterop\ConvertKit\Exception;
 
-use GSteel\Listless\Exception\Exception as ListlessException;
+use ListInterop\Exception\Exception as ListlessException;
 
 interface Exception extends ListlessException
 {

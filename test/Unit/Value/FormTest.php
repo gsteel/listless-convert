@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace GSteel\Listless\ConvertKit\Test\Unit\Value;
+namespace ListInterop\ConvertKit\Test\Unit\Value;
 
 use DateTimeImmutable;
 use DateTimeZone;
 use Generator;
-use GSteel\Listless\ConvertKit\Exception\AssertionFailed;
-use GSteel\Listless\ConvertKit\Value\Form;
-use GSteel\Listless\ConvertKit\Value\FormId;
-use GSteel\Listless\Json;
+use ListInterop\ConvertKit\Exception\AssertionFailed;
+use ListInterop\ConvertKit\Value\Form;
+use ListInterop\ConvertKit\Value\FormId;
+use ListInterop\Json;
 use PHPUnit\Framework\TestCase;
 
 use function array_keys;

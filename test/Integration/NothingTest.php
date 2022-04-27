@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GSteel\Listless\ConvertKit\Test\Integration;
+namespace ListInterop\ConvertKit\Test\Integration;
 
 use PHPUnit\Framework\TestCase;
 
